@@ -14,22 +14,49 @@
 </head>
 <body>
 <div id="example" ng-app="app">
-
     <div ng-controller="dragDropController">
-        <div class="demo-section k-header">
-            <div class="{{ draggableCLass }}"
-                 id="draggable"
-                 kendo-draggable
-                 k-hint="draggableHint"
-                 k-dragstart="onDragStart"
-                 k-dragend="onDragEnd">
+        <div class="demo-section">
+            <div class="main-container ">
+                <div class="multiplier-container main-container-item">
+                    <div class="multiplier"
+                         id="draggable1"
+                         kendo-draggable
+                         k-hint="draggableHint"
+                         k-dragstart="onDragStart"
+                         k-dragend="onDragEnd">x1</div>
+                    <div class="multiplier"
+                         id="draggable2"
+                         kendo-draggable
+                         k-hint="draggableHint"
+                         k-dragstart="onDragStart"
+                         k-dragend="onDragEnd">x2</div>
+                    <div class="multiplier"
+                         id="draggable3"
+                         kendo-draggable
+                         k-hint="draggableHint"
+                         k-dragstart="onDragStart"
+                         k-dragend="onDragEnd">x3</div>
+                    <div class="multiplier"
+                         id="draggable4"
+                         kendo-draggable
+                         k-hint="draggableHint"
+                         k-dragstart="onDragStart"
+                         k-dragend="onDragEnd">x4</div>
+                </div>
+                <div id="droptarget"
+                     kendo-droptarget
+                     k-dragenter="onDragEnter"
+                     k-dragleave="onDragLeave"
+                     k-drop="onDrop"
+                     class="k-header">{{ dropTargetText }}
+                </div>
             </div>
-            <div id="droptarget"
-                 kendo-droptarget
-                 k-dragenter="onDragEnter"
-                 k-dragleave="onDragLeave"
-                 k-drop="onDrop"
-                 class="k-header">{{ dropTargetText }}
+            <!--Range Slider-->
+            <div
+                 kendo-range-slider
+                 k-options="rangeSliderOptions" id="rangeSlider1">
+                <input />
+                <input />
             </div>
         </div>
     </div>
@@ -37,15 +64,18 @@
     <script>
         angular.module("app", [ "kendo.directives" ])
                 .controller("dragDropController", function($scope){
-                    $scope.dropTargetText = "Drag the small circle here.";
+                    $scope.dropTargetText = "Select multiplier.";
 
-                    $scope.draggableHint = function() {
-                        return $("#draggable").clone();
+                    $scope.selectedMultiplier = null;
+
+                    $scope.draggableHint = function(e) {
+                        var clone = $("#" + e.get(0).id).clone();
+                        $scope.selectedMultiplier = clone[0].textContent;
+                        return $("#draggable1").clone();
                     }
 
                     $scope.onDragEnd = function() {
-                        var draggable = $("#draggable");
-
+                        var draggable = $("#draggable1");
                         if (!draggable.data("kendoDraggable").dropped) {
                             // drag ended outside of any droptarget
                             $scope.dropTargetText = "Try again!";
@@ -75,11 +105,39 @@
 
                     $scope.onDrop = function(e) {
                         $scope.$apply(function() {
-                            $scope.dropTargetText = "You did great!";
+                            $scope.dropTargetText = $scope.selectedMultiplier;
                             $scope.draggableClass = "";
                         });
                     }
+
+                    $scope.rangeSliderOptions = {
+                        min: 0,
+                        max: 24,
+                        smallStep: 0.5,
+                        largeStep: 1,
+                        tickPlacement: 'bottom',
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
                 })
+
+//        var steps = {};
+//        steps[0] = 'P';
+//        steps[1] = 'O';
+//        steps[2] = 'G';
+//        steps[3] = 'I';
+//
+//        var sliderItems = $('#rangeSlider1').siblings(".k-slider-items");
+//
+//        console.log($('#rangeSlider1'));
+//        console.log('slider items : ' + sliderItems.length);
+//
+//        $.each(steps, function(index, value){
+//            var item = sliderItems.find("li:eq("+ (index) +")");
+//            item.attr("title", value);
+//            item.find("span").text(value);
+//        });
     </script>
 </div>
 

@@ -18,30 +18,59 @@
 
 #droptarget
 {
-    height: 200px;
-    width: 200px;
-    font-size: 14px;
-    border-radius: 50%;
+    height: 100px;
+    width: 100%;
+    margin: 5px 0;
+    font-size: 24px;
     text-align: center;
-    line-height: 200px;
-    margin: 0 0 0 250px;
     cursor: default;
     border: 1px solid #999;
-    background-color: #f36311;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    border: black dotted 2px;
+    border-radius: 5px;
 }
 
 .demo-section
 {
-    width: 500px;
     position: relative;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.main-container-item {
+    flex-grow: 0;
+    flex-wrap: nowrap;
+    flex-basis: auto;
+}
+
 .multiplier-container {
-    display: flex; /* or inline-flex */
-    flex-direction: column ;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
 }
 
 .multiplier {
     width: 100px;
     height: 100px;
+    border: solid 1px black;
+    margin: 5px;
+    background-color: #03a9f4;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+}
+
+.k-slider-horizontal
+{
+    display: inline-block;
+    float: left;
+    width: 650px;
+    height: 26px;
 }
