@@ -2,15 +2,16 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css" />
-    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css" />
-    <link rel="stylesheet" href="scripts/main.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css"/>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css"/>
+    <link rel="stylesheet" href="main.css"/>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.ui.core.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 <div id="example" ng-app="app">
@@ -23,25 +24,29 @@
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
-                         k-dragend="onDragEnd">x1</div>
+                         k-dragend="onDragEnd">x1
+                    </div>
                     <div class="multiplier"
                          id="draggable2"
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
-                         k-dragend="onDragEnd">x2</div>
+                         k-dragend="onDragEnd">x2
+                    </div>
                     <div class="multiplier"
                          id="draggable3"
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
-                         k-dragend="onDragEnd">x3</div>
+                         k-dragend="onDragEnd">x3
+                    </div>
                     <div class="multiplier"
                          id="draggable4"
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
-                         k-dragend="onDragEnd">x4</div>
+                         k-dragend="onDragEnd">x4
+                    </div>
                 </div>
                 <div id="droptarget"
                      kendo-droptarget
@@ -53,94 +58,14 @@
             </div>
             <!--Range Slider-->
             <div
-                 kendo-range-slider
-                 k-options="rangeSliderOptions" id="rangeSlider1">
-                <input />
-                <input />
+                    kendo-range-slider
+                    k-options="rangeSliderOptions" id="rangeSlider1">
+                <input/>
+                <input/>
             </div>
         </div>
     </div>
-
-    <script>
-        angular.module("app", [ "kendo.directives" ])
-                .controller("dragDropController", function($scope){
-                    $scope.dropTargetText = "Select multiplier.";
-
-                    $scope.selectedMultiplier = null;
-
-                    $scope.draggableHint = function(e) {
-                        var clone = $("#" + e.get(0).id).clone();
-                        $scope.selectedMultiplier = clone[0].textContent;
-                        return $("#draggable1").clone();
-                    }
-
-                    $scope.onDragEnd = function() {
-                        var draggable = $("#draggable1");
-                        if (!draggable.data("kendoDraggable").dropped) {
-                            // drag ended outside of any droptarget
-                            $scope.dropTargetText = "Try again!";
-                        }
-
-                        draggable.removeClass("hollow");
-                    }
-
-                    $scope.onDragStart = function() {
-                        $scope.$apply(function() {
-                            $scope.draggableClass = "hollow";
-                            $scope.dropTargetText = "Drop here.";
-                        });
-                    }
-
-                    $scope.onDragEnter = function(e) {
-                        $scope.$apply(function() {
-                            $scope.dropTargetText = "Now drop...";
-                        });
-                    }
-
-                    $scope.onDragLeave = function(e) {
-                        $scope.$apply(function() {
-                            $scope.dropTargetText = "Drop here.";
-                        });
-                    }
-
-                    $scope.onDrop = function(e) {
-                        $scope.$apply(function() {
-                            $scope.dropTargetText = $scope.selectedMultiplier;
-                            $scope.draggableClass = "";
-                        });
-                    }
-
-                    $scope.rangeSliderOptions = {
-                        min: 0,
-                        max: 24,
-                        smallStep: 0.5,
-                        largeStep: 1,
-                        tickPlacement: 'bottom',
-                        tooltip: {
-                            enabled: false
-                        }
-                    }
-                })
-
-//        var steps = {};
-//        steps[0] = 'P';
-//        steps[1] = 'O';
-//        steps[2] = 'G';
-//        steps[3] = 'I';
-//
-//        var sliderItems = $('#rangeSlider1').siblings(".k-slider-items");
-//
-//        console.log($('#rangeSlider1'));
-//        console.log('slider items : ' + sliderItems.length);
-//
-//        $.each(steps, function(index, value){
-//            var item = sliderItems.find("li:eq("+ (index) +")");
-//            item.attr("title", value);
-//            item.find("span").text(value);
-//        });
-    </script>
 </div>
-
 
 </body>
 </html>
