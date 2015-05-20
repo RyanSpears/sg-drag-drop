@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css" />
+    <link rel="stylesheet" href="scripts/main.css" />
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.ui.core.min.js"></script>
+</head>
+<body>
+<div id="example" ng-app="app">
+
+    <div ng-controller="dragDropController">
+        <div class="demo-section k-header">
+            <div class="{{ draggableCLass }}"
+                 id="draggable"
+                 kendo-draggable
+                 k-hint="draggableHint"
+                 k-dragstart="onDragStart"
+                 k-dragend="onDragEnd">
+            </div>
+            <div id="droptarget"
+                 kendo-droptarget
+                 k-dragenter="onDragEnter"
+                 k-dragleave="onDragLeave"
+                 k-drop="onDrop"
+                 class="k-header">{{ dropTargetText }}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        angular.module("app", [ "kendo.directives" ])
+                .controller("dragDropController", function($scope){
+                    $scope.dropTargetText = "Drag the small circle here.";
+
+                    $scope.draggableHint = function() {
+                        return $("#draggable").clone();
+                    }
+
+                    $scope.onDragEnd = function() {
+                        var draggable = $("#draggable");
+
+                        if (!draggable.data("kendoDraggable").dropped) {
+                            // drag ended outside of any droptarget
+                            $scope.dropTargetText = "Try again!";
+                        }
+
+                        draggable.removeClass("hollow");
+                    }
+
+                    $scope.onDragStart = function() {
+                        $scope.$apply(function() {
+                            $scope.draggableClass = "hollow";
+                            $scope.dropTargetText = "Drop here.";
+                        });
+                    }
+
+                    $scope.onDragEnter = function(e) {
+                        $scope.$apply(function() {
+                            $scope.dropTargetText = "Now drop...";
+                        });
+                    }
+
+                    $scope.onDragLeave = function(e) {
+                        $scope.$apply(function() {
+                            $scope.dropTargetText = "Drop here.";
+                        });
+                    }
+
+                    $scope.onDrop = function(e) {
+                        $scope.$apply(function() {
+                            $scope.dropTargetText = "You did great!";
+                            $scope.draggableClass = "";
+                        });
+                    }
+                })
+    </script>
+</div>
+
+
+</body>
+</html>
