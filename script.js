@@ -1,7 +1,3 @@
-/**
- * Created by ryan.spears on 20/05/2015.
- */
-
 var app = angular.module("app", ["kendo.directives"]);
 
 app.controller("dragDropController", function ($scope) {
@@ -69,10 +65,22 @@ app.controller("dragDropController", function ($scope) {
     $scope.dayNames.forEach(function(day){
         var hours = [];
         $scope.hoursInDay.forEach(function(hour){
-            hours.push(new app.models.ScheduleDayHour(day, hour, 1));
+            hours.push(new app.models.ScheduleDayHour(day, hour, getRandomInt(1,5)));
         })
         $scope.daySchedules.push(new app.models.ScheduleDay(day, hours))
     });
+});
+
+function getRandomInt(min, max){
+    return min + Math.floor(Math.random() * (max - min + 1));
+}
+
+app.directive('scheduleHeader', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl:  'schedule-header.html'
+    };
 });
 
 app.directive('scheduleDay', function () {
@@ -86,10 +94,13 @@ app.directive('scheduleDay', function () {
     };
 });
 
-app.directive('scheduleHours', function () {
+app.directive('scheduleHour', function () {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl:  'schedule-hours.html'
+        templateUrl:  'schedule-hour.html',
+        scope: {
+            hour: '='
+        }
     };
 });

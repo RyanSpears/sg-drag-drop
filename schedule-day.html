@@ -1,4 +1,4 @@
 <div class="schedule-day-container">
     <div class="schedule-day-header">{{day.dayName}}</div>
-    <div class="schedule-day-item" ng-repeat="hour in day.hours">{{hour.dayName + ' ' + hour.multiplier}}</div>
+    <schedule-hour ng-repeat="hour in day.hours" hour="hour"></schedule-hour>
 </div>

@@ -20,33 +20,33 @@
         <div class="demo-section">
             <div class="main-container ">
                 <div class="multiplier-container main-container-item">
-                    <div class="multiplier"
+                    <div class="multiplier x-2"
                          id="draggable1"
-                         kendo-draggable
-                         k-hint="draggableHint"
-                         k-dragstart="onDragStart"
-                         k-dragend="onDragEnd">x1
-                    </div>
-                    <div class="multiplier"
-                         id="draggable2"
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
                          k-dragend="onDragEnd">x2
                     </div>
-                    <div class="multiplier"
-                         id="draggable3"
+                    <div class="multiplier x-3"
+                         id="draggable2"
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
                          k-dragend="onDragEnd">x3
                     </div>
-                    <div class="multiplier"
-                         id="draggable4"
+                    <div class="multiplier x-4"
+                         id="draggable3"
                          kendo-draggable
                          k-hint="draggableHint"
                          k-dragstart="onDragStart"
                          k-dragend="onDragEnd">x4
+                    </div>
+                    <div class="multiplier x-5"
+                         id="draggable4"
+                         kendo-draggable
+                         k-hint="draggableHint"
+                         k-dragstart="onDragStart"
+                         k-dragend="onDragEnd">x5
                     </div>
                 </div>
                 <div id="droptarget"
@@ -58,13 +58,8 @@
                 </div>
             </div>
             <!--Schedule-->
-            <!--<div id="schedule">-->
-                <!--<schedule-hours></schedule-hours>-->
-                <!--<schedule-day ng-repeat="day in days" day-name="day"></schedule-day>-->
-            <!--</div>-->
-            <!--New Schedule-->
             <div id="schedule">
-                <schedule-hours></schedule-hours>
+                <schedule-header></schedule-header>
                 <schedule-day ng-repeat="day in daySchedules" day="day"></schedule-day>
             </div>
         </div>
