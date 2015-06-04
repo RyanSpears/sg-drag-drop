@@ -63,13 +63,26 @@ app.controller("dragDropController", function ($scope) {
     }
 
     $scope.hoursInDay = ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM']
+    $scope.dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
+    $scope.daySchedules = [];
+
+    $scope.dayNames.forEach(function(day){
+        var hours = [];
+        $scope.hoursInDay.forEach(function(hour){
+            hours.push(new app.models.ScheduleDayHour(day, hour, 1));
+        })
+        $scope.daySchedules.push(new app.models.ScheduleDay(day, hours))
+    });
 });
 
 app.directive('scheduleDay', function () {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl:  'schedule-day.html'
+        templateUrl:  'schedule-day.html',
+        scope: {
+            day: '='
+        }
     };
 });
 

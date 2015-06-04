@@ -12,6 +12,7 @@
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.ui.core.min.js"></script>
     <script src="script.js"></script>
+    <script src="models.js"></script>
 </head>
 <body>
 <div id="example" ng-app="app">
@@ -57,9 +58,14 @@
                 </div>
             </div>
             <!--Schedule-->
+            <!--<div id="schedule">-->
+                <!--<schedule-hours></schedule-hours>-->
+                <!--<schedule-day ng-repeat="day in days" day-name="day"></schedule-day>-->
+            <!--</div>-->
+            <!--New Schedule-->
             <div id="schedule">
                 <schedule-hours></schedule-hours>
-                <schedule-day></schedule-day>
+                <schedule-day ng-repeat="day in daySchedules" day="day"></schedule-day>
             </div>
         </div>
     </div>
