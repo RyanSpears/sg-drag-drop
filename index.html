@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css"/>
     <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css"/>
     <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
     <link rel="stylesheet" href="main.css"/>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -63,6 +64,16 @@
                 <schedule-day ng-repeat="day in daySchedules" day="day"></schedule-day>
             </div>
         </div>
+        <!--Error-->
+        <p class="alert alert-error">
+            <i class="fa fa-warning"></i>
+            Error
+        </p>
+        <!--Success-->
+        <p class="alert alert-success">
+            <i class="fa fa-check-square-o"></i>
+            Success
+        </p>
     </div>
 </div>
 

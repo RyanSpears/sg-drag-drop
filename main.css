@@ -165,3 +165,29 @@
 .multiplier.x-5 {
     background-color: #6AA84F;
 }
+
+.alert.alert-error {
+    border-left-color: #cb5234;
+}
+
+.alert {
+    padding: .75rem 1rem .75rem 3rem;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    color: #555459;
+    border-left-width: 5px;
+    margin: 0 auto 1rem;
+    border-radius: .25rem;
+}
+
+.fa-warning {
+    color: #cb5234;
+}
+
+.alert.alert-success {
+    border-left-color: #5cb85c;
+}
+
+.fa-check-square-o {
+    color: #5cb85c;
+}
