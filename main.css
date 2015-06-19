@@ -171,12 +171,12 @@
 }
 
 .alert {
-    padding: .75rem 1rem .75rem 3rem;
+    padding: 15px 10px;
     border: 1px solid #e8e8e8;
     background: #fff;
     color: #555459;
     border-left-width: 5px;
-    margin: 0 auto 1rem;
+    margin: 5px 0;
     border-radius: .25rem;
 }
 
@@ -188,6 +188,6 @@
     border-left-color: #5cb85c;
 }
 
-.fa-check-square-o {
+.fa-check-circle-o {
     color: #5cb85c;
 }
